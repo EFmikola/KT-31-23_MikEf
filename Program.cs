@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
+using ProjectPractice.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ try
     // Add services to the container.
 
     builder.Services.AddControllers();
+    builder.Services.AddDbContext<StudentDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
     builder.Services.AddEndpointsApiExplorer();
     
