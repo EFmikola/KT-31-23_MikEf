@@ -3,6 +3,8 @@ using NLog;
 using NLog.Web;
 using ProjectPractice.Database;
 
+using ProjectPractice.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -17,6 +19,9 @@ try
     builder.Services.AddControllers();
     builder.Services.AddDbContext<StudentDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    
+    builder.Services.AddDatabaseServices();
+    
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
     builder.Services.AddEndpointsApiExplorer();
     

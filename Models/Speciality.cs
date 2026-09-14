@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ProjectPractice.Models
 {
@@ -11,6 +12,7 @@ namespace ProjectPractice.Models
 
         public string Code { get; set; } = string.Empty;
 
+        [JsonIgnore]
         public ICollection<Group> Groups { get; set; } = new List<Group>();
     }
 }
