@@ -11,6 +11,8 @@ namespace ProjectPractice.Extensions
             services.AddScoped<IStudentService, StudentService>();
 
             services.AddScoped<IDisciplineService, DisciplineService>();
+
+            services.AddScoped<IGradeService, GradeService>();
             return services;
         }
     }
