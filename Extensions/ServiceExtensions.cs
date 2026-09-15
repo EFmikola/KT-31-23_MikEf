@@ -10,6 +10,7 @@ namespace ProjectPractice.Extensions
 
             services.AddScoped<IStudentService, StudentService>();
 
+            services.AddScoped<IDisciplineService, DisciplineService>();
             return services;
         }
     }
