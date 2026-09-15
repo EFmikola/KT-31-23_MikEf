@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ProjectPractice.Models;
 
@@ -17,6 +18,7 @@ public class Group
 
     public Speciality? Speciality { get; set; }
 
+    [JsonIgnore]
     public ICollection<Student> Students { get; set; } = new List<Student>();
 
 }

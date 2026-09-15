@@ -8,6 +8,8 @@ namespace ProjectPractice.Extensions
         {
             services.AddScoped<IGroupService, GroupService>();
 
+            services.AddScoped<IStudentService, StudentService>();
+
             return services;
         }
     }
