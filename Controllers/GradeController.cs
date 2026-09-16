@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectPractice.Dtos;
 using ProjectPractice.Filters;
+using ProjectPractice.Requests;
 using ProjectPractice.Services;
 
 namespace ProjectPractice.Controllers;
@@ -41,5 +42,46 @@ public class GradeController : ControllerBase
         var results = await _gradeService.GetCourseAverageAsync(filter);
 
         return Ok(results);
+    }
+
+
+
+
+    [HttpPost]
+    public async Task<ActionResult<int>> CreateGradeAsync([FromBody] CreateGradeRequest request)
+    {
+        var gradeId = await _gradeService.CreateGradeAsync(request);
+
+        if (gradeId is null)
+        {
+            return BadRequest("Студент или дисциплина не найдена.");
+        }
+
+        return Ok(gradeId.Value);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateGradeAsync([FromBody] UpdateGradeRequest request)
+    {
+        var updated = await _gradeService.UpdateGradeAsync(request);
+
+        return updated ? NoContent() : NotFound();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteGradeAsync([FromBody] DeleteGradeRequest request)
+    {
+        var deleted = await _gradeService.DeleteGradeAsync(request);
+
+        return deleted ? NoContent() : NotFound();
+    }
+
+
+    [HttpGet("debts")]
+    public async Task<ActionResult<List<StudentDebtDto>>> GetStudentDebtsAsync([FromQuery] StudentDebtFilter filter)
+    {
+        var debts = await _gradeService.GetStudentDebtsAsync(filter);
+
+        return Ok(debts);
     }
 }

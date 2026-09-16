@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
+using ProjectPractice.Middlewares;
 using ProjectPractice.Database;
 
+
 using ProjectPractice.Extensions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +44,8 @@ try
             options.SwaggerEndpoint("/openapi/v1.json", "API v1");
         });
     }
+
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
 
     app.UseAuthorization();
 

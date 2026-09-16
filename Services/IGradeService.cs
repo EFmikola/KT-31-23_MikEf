@@ -1,6 +1,7 @@
-﻿using ProjectPractice.Filters;
+﻿using ProjectPractice.Dtos;
+using ProjectPractice.Filters;
 using ProjectPractice.Models;
-using ProjectPractice.Dtos;
+using ProjectPractice.Requests;
 
 namespace ProjectPractice.Services
 {
@@ -12,6 +13,14 @@ namespace ProjectPractice.Services
         Task<AverageGradeDto?> GetGroupDisciplineAsync(GroupDisciplineFilter filter);
 
         Task<List<AverageGradeDto>> GetCourseAverageAsync(CourseAverageFilter filter);
+
+        Task<int?> CreateGradeAsync(CreateGradeRequest request);
+
+        Task<bool> UpdateGradeAsync(UpdateGradeRequest request);
+
+        Task<bool> DeleteGradeAsync(DeleteGradeRequest request);
+
+        Task<List<String>> GetStudentDebtsAsync(StudentDebtFilter filter);
     }
 
 }
